@@ -1,11 +1,15 @@
 const express = require("express")
 const helmet = require("helmet")
+// import router
+const RecipesRouter = require("./recipes-router")
 
 const server = express()
-const port = process.evn.PORT || 50000
+const port = process.env.PORT || 5000
 
 server.use(helmet())
 server.use(express.json())
+// router
+server.use("/api/recipes", RecipesRouter)
 
 server.use((err, req, res, next) => {
 	console.log(err)
